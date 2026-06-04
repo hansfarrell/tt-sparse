@@ -79,7 +79,7 @@ class _LTTNode(Function):
         v = sw * (1.0 - sw)
         s = v.sum(0, keepdim=True).clamp_min(1e-12)
         uv = local * v
-        conn_g = uv - uv.sum(0, keepdim=True) * v / s
+        conn_g = (uv - uv.sum(0, keepdim=True) * v / s) / tau
         return input_g, conn_g, logic_g, bias_g, None, None
 
 
